@@ -1,0 +1,5 @@
+properties:
+  ready:
+    type: boolean
+  message:
+    type: string

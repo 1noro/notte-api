@@ -2,6 +2,7 @@ openapi: '3.0.2'
 info:
   title: Notte API
   version: '1.0'
+  description: 'An api for my notes application.'
 servers:
   - url: http://localhost/v1
 paths:
@@ -10,4 +11,27 @@ paths:
       responses:
         '200':
           description: OK
-          
+  /health/ready:
+    get:
+      responses:
+        '200':
+          description: The service is ready to serve requests.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/health-ready.yml'
+              example:
+                $ref: 'examples/health-ready-200.json'
+        '503':
+          description: The service is not ready to serve requests.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/health-ready.yml'
+              example:
+                $ref: 'examples/health-ready-503.json'
+  /health/live:
+    get:
+      responses:
+        '200':
+          description: OK
