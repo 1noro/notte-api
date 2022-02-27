@@ -1,0 +1,5 @@
+properties:
+  error:
+    type: number
+  message:
+    type: string

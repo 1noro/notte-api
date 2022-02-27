@@ -1,0 +1,5 @@
+properties:
+  alive:
+    type: boolean
+  message:
+    type: string

@@ -6,13 +6,10 @@ info:
 servers:
   - url: http://localhost/v1
 paths:
-  /test:
-    get:
-      responses:
-        '200':
-          description: OK
   /health/ready:
     get:
+      description: Check if the service is ready to serve requests.
+      operationId: isReady
       responses:
         '200':
           description: The service is ready to serve requests.
@@ -32,6 +29,143 @@ paths:
                 $ref: 'examples/health-ready-503.json'
   /health/live:
     get:
+      description: Check if the service is alive.
+      operationId: isAlive
       responses:
         '200':
-          description: OK
+          description: The service is alive.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/health-live.yml'
+              example:
+                $ref: 'examples/health-live-200.json'
+  /{user}/notes:
+    parameters:
+      - name: user
+        in: path
+        description: The user id.
+        required: true
+        example: 25648
+        schema:
+          type: string
+      - name: perpage
+        in: query
+        description: The number of notes per page.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 10
+      - name: page
+        in: query
+        description: The page number.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+    get:
+      description: Get all notes for a user.
+      operationId: getNotes
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'schemas/note.yml'
+              example:
+                $ref: 'examples/notes-200.json'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-400.json'
+        '401':
+          description: User unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-401.json'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-404.json'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-500.json'
+  /{user}/note/{note}:
+    parameters:
+      - name: user
+        in: path
+        description: The user id.
+        required: true
+        schema:
+          type: string
+      - name: note
+        in: path
+        description: The note id.
+        required: true
+        schema:
+          type: string
+    get:
+      description: Get a note for a user.
+      operationId: getNote
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/note.yml'
+              # example:
+              #   $ref: 'examples/note-200.json'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-400.json'
+        '401':
+          description: User unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-401.json'
+        '404':
+          description: User or note not found.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-404.json'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/error.yml'
+              example:
+                $ref: 'examples/error-500.json'
