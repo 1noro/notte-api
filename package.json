@@ -1,0 +1,31 @@
+{
+  "name": "notte-api",
+  "version": "1.0.0",
+  "description": "An api for my notes application.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1noro/notte-api.git"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "node",
+    "js",
+    "notes",
+    "backend"
+  ],
+  "author": "1noro",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/1noro/notte-api/issues"
+  },
+  "homepage": "https://github.com/1noro/notte-api#readme"
+}
