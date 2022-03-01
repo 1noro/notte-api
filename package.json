@@ -7,6 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
+    "start/dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,5 +28,11 @@
   "bugs": {
     "url": "https://github.com/1noro/notte-api/issues"
   },
-  "homepage": "https://github.com/1noro/notte-api#readme"
+  "homepage": "https://github.com/1noro/notte-api#readme",
+  "dependencies": {
+    "express": "4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15"
+  }
 }
