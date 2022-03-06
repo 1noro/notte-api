@@ -1,0 +1,20 @@
+version: "3.5"
+services:
+  notte-api:
+    container_name: notte-api
+    hostname: notte-api
+    image: notte-api:dev
+    build:
+      target: dev
+      args:
+        - UID=${UID}
+        - GID=${GID}
+    user: ${UID}:${GID}
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      - EXPORTED_USER=${UID}
+      - EXPORTED_GROUP=${GID}
+    volumes:
+      - ./app:/app
